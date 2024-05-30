@@ -36,4 +36,18 @@ public class Arcs {
         return this.arcs;
     }
 
+    /**
+     * Methode de presentation visuelle d'informations sur de la liste des arcs
+     *
+     * @return une chaine representant la liste des arcs
+     */
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (Arc arc : arcs) {
+            res.append(arc.getDest()).append("(").append(arc.getCout()).append(") ");
+        }
+        return res.toString();
+    }
+
 }
