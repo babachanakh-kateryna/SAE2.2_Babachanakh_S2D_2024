@@ -31,6 +31,21 @@ public class GrapheListe implements Graphe {
         this.adjacence.get(index).ajouterArc(new Arc(destination, cout));
     }
 
+    public GrapheListe(String filename) throws IOException {
+        this();
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("\t");
+            if (parts.length == 3) {
+                String depart = parts[0];
+                String destination = parts[1];
+                double cout = Double.parseDouble(parts[2]);
+                ajouterArc(depart, destination, cout);
+            }
+        }
+        reader.close();
+    }
 
     @Override
     public List<String> listeNoeuds() {
@@ -58,7 +73,14 @@ public class GrapheListe implements Graphe {
         return res.toString();
     }
 
-
+    public static void main(String[] args) {
+        try {
+            GrapheListe graphe = new GrapheListe("Graphes/Graphe_exemple1.txt");
+            System.out.println(graphe.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 
