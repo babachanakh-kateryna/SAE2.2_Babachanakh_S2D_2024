@@ -17,5 +17,5 @@ public class Arcs {
     public List<Arc> getArcs() {
         return this.arcs;
     }
-    
+
 }
