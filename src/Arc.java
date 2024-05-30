@@ -9,8 +9,8 @@ public class Arc {
         this.cout = cout;
     }
 
-   public String toString(){
-
+    @Override
+    public String toString(){
         return "(" + this.dest + "," + this.cout + ")";
    }
 
