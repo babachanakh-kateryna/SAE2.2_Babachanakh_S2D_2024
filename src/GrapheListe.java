@@ -86,7 +86,7 @@ public class GrapheListe implements Graphe {
 
             System.out.println(graphe.toString());
 
-            
+
             GrapheListe graphefile = new GrapheListe("Graphes/Graphe_exemple1.txt");
             System.out.println(graphefile.toString());
         } catch (IOException e) {
