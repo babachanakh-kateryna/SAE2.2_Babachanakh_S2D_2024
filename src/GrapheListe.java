@@ -29,7 +29,7 @@ public class GrapheListe implements Graphe {
      * @param n le nom du noeud
      * @return l'indice du noeud dans la liste
      */
-    private int getIndice(String n) {
+    public int getIndice(String n) {
         return this.noeuds.indexOf(n);
     }
 
@@ -56,6 +56,15 @@ public class GrapheListe implements Graphe {
 
         // Recuperer l'index du nœud de depart
         int index = this.getIndice(depart);
+
+        List<Arc> arcs = this.adjacence.get(index).getArcs();
+
+        // Recherche d'arcs en double
+        for (Arc arc : arcs) {
+            if (arc.getDest().equals(destination) && arc.getCout() == cout) {
+                return; // Arc en double, ne pas ajouter
+            }
+        }
 
         // Ajouter l'arc a la liste de adjacence du nœud de depart
         this.adjacence.get(index).ajouterArc(new Arc(destination, cout));
