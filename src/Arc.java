@@ -44,7 +44,7 @@ public class Arc {
 
     /**
      * Methode qui renvoie le cout (ou poids) de l’arc
-     * 
+     *
      * @return le cout (ou poids) de l’arc
      */
    public double getCout() {
