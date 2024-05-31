@@ -6,6 +6,8 @@ import src.Valeur;
 import src.algo.BellmanFord;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,6 +47,10 @@ public class BellmanFordTest {
         assertEquals("D", valeur.getParent("C"), "Le parent de C doit etre D");
         assertEquals("E", valeur.getParent("D"), "Le parent de D doit etre B");
         assertEquals("B", valeur.getParent("E"), "Le parent de E doit etre B");
+
+        // Verification du chemin de A a C
+        List<String> cheminAttendu = Arrays.asList("A", "B", "E", "D", "C");
+        assertEquals(cheminAttendu, valeur.calculerChemin("C"), "Le chemin de A a C doit etre [A, B, E, D, C]");
     }
 
     /**
@@ -76,6 +82,10 @@ public class BellmanFordTest {
         assertEquals("D", valeur.getParent("C"), "Le parent de C doit etre D");
         assertEquals("E", valeur.getParent("D"), "Le parent de D doit etre B");
         assertEquals("B", valeur.getParent("E"), "Le parent de E doit etre B");
+
+        // Verification du chemin de A a C
+        List<String> cheminAttendu = Arrays.asList("A", "B", "E", "D", "C");
+        assertEquals(cheminAttendu, valeur.calculerChemin("C"), "Le chemin de A a C doit etre [A, B, E, D, C]");
 
     }
 }

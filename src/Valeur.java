@@ -1,9 +1,6 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Classe fournie, permet de stocker des valeurs associées au noeud et des parents
@@ -90,4 +87,22 @@ public class Valeur {
 
     }
 
+    /**
+     * Methode qui calcule le chemin menant au noeud passe en parametre a partir du point de depart
+     *
+     * @param destination Le nom du noeud de destination
+     * @return Une liste de noms de noeuds correspondant au chemin
+     */
+    public List<String> calculerChemin(String destination) {
+        List<String> chemin = new ArrayList<>();
+        String courant = destination;
+        while (courant != null) {
+            chemin.add(courant);
+            courant = this.getParent(courant);
+        }
+
+        // Inverse la liste pour avoir le chemin dans le bon ordre
+        Collections.reverse(chemin);
+        return chemin;
+    }
 }

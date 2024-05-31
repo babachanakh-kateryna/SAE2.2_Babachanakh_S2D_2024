@@ -35,8 +35,12 @@ public class Main {
             // Affichage des valeurs de distance pour chaque nœud
             System.out.println(valeur);
 
+            // Calcul du chemin de A à C
+            System.out.println("Chemin de A à C:");
+            System.out.println(valeur.calculerChemin("C"));
 
-            System.out.println("Saisie de donnees a l'aide d'un fichier");
+
+            System.out.println("\nSaisie de donnees a l'aide d'un fichier");
             GrapheListe graphefile = new GrapheListe("Graphes/Graphe_exemple1.txt");
             // Affichage du graphe
             System.out.println("Graphe:");
@@ -46,6 +50,9 @@ public class Main {
             Valeur valeurFile = bellmanFord.resoudre(graphefile, "A");
             // Affichage des valeurs de distance
             System.out.println(valeurFile);
+            // Calcul du chemin de A à C
+            System.out.println("Chemin de B à E:");
+            System.out.println(valeurFile.calculerChemin("E"));
 
         } catch (IOException e) {
             e.printStackTrace();
