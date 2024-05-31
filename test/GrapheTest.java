@@ -1,6 +1,7 @@
 package test;
 import org.junit.jupiter.api.Test;
 import src.Arc;
+import src.Arcs;
 import src.GrapheListe;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,13 +11,125 @@ import java.util.List;
 /**
  * La classe GrapheListeTest pour verifier les methodes de GrapheListe
  */
-public class GrapheListeTest {
+public class GrapheTest {
+
+    /**
+     * verifie que les valeurs de destination et de cout sont correctement initialisees
+     * (Classe Arc)
+     */
+    @Test
+    public void test1_ArcConstructor_OK() {
+        // preparation des donnees
+        Arc arc = new Arc("B", 12.5);
+        // verifications
+        assertEquals("B", arc.getDest());
+        assertEquals(12.5, arc.getCout());
+    }
+
+    /**
+     * verifie que la representation sous forme de chaine de l'arc est correcte
+     * (Classe Arc)
+     */
+    @Test
+    public void test2_ArcToString_OK() {
+        // preparation des donnees
+        Arc arc = new Arc("C", 15.0);
+        // verifications
+        assertEquals("(C,15.0)", arc.toString());
+    }
+
+    /**
+     * verifie que le cout de l'arc est initialise a zero si la valeur fournie est negative
+     * (Classe Arc)
+     */
+    @Test
+    public void test3_ArcConstructor_NegativeCout() {
+        // preparation des donnees
+        Arc arc = new Arc("D", -10.0);
+        // verifications
+        assertEquals(0.0, arc.getCout());
+    }
+
+    /**
+     * verifie que la representation sous forme de chaine de la liste d'arcs est correcte
+     * (Classe Arcs)
+     */
+    @Test
+    public void test4_ArcsToString_OK() {
+        // preparation des donnees
+        Arcs arcs = new Arcs();
+        arcs.ajouterArc(new Arc("B", 12.5));
+        arcs.ajouterArc(new Arc("C", 15.0));
+
+        // verifications
+        assertEquals("B(12.5) C(15.0) ", arcs.toString());
+    }
+
+    /**
+     * verifie si les arcs ont ete ajoutes correctement a la liste des arcs
+     * (Classe Arcs)
+     */
+    @Test
+    public void test5_ArcsAjouterArc_OK() {
+        // preparation des donnees
+        Arcs arcs = new Arcs();
+        Arc arc = new Arc("B", 12.5);
+
+        // methode testee
+        arcs.ajouterArc(arc);
+        List<Arc> arcList = arcs.getArcs();
+
+        // verifications
+        assertEquals(1, arcList.size());
+        assertEquals("B", arcList.get(0).getDest());
+        assertEquals(12.5, arcList.get(0).getCout());
+    }
+
+    /**
+     * verifie que tous les arcs sont ajoutes correctement et sont retournes dans le bon ordre
+     * (Classe Arcs)
+     */
+    @Test
+    public void test6_ArcsAjouterArc_MultipleArcs() {
+        // preparation des donnees
+        Arcs arcs = new Arcs();
+
+        // methode testee
+        arcs.ajouterArc(new Arc("B", 12.5));
+        arcs.ajouterArc(new Arc("C", 15.0));
+        arcs.ajouterArc(new Arc("D", 20.0));
+
+        List<Arc> arcList = arcs.getArcs();
+
+        // verifications
+        assertEquals(3, arcList.size());
+        assertEquals("B", arcList.get(0).getDest());
+        assertEquals(12.5, arcList.get(0).getCout());
+        assertEquals("C", arcList.get(1).getDest());
+        assertEquals(15.0, arcList.get(1).getCout());
+        assertEquals("D", arcList.get(2).getDest());
+        assertEquals(20.0, arcList.get(2).getCout());
+    }
+
+    /**
+     * verifie que la liste retournee est vide pour un nouvel objet Arcs
+     * (Classe Arcs)
+     */
+    @Test
+    public void test7_ArcsConstructeur_VideArcsList() {
+        // preparation des donnees
+        Arcs arcs = new Arcs();
+
+        // verifications
+        assertTrue(arcs.getArcs().isEmpty());
+    }
 
     /**
      * verifie le constructeur de graphe vide
+     * (Classe GrapheListe)
      */
     @Test
-    public void test1_Constructeur_VideGraph() {
+    public void test8_GrapheListeConstructeur_VideGraph() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         // verifications
@@ -25,9 +138,10 @@ public class GrapheListeTest {
 
     /**
      * verifie que la methode getIndice renvoie correctement les indices de nœuds
+     * (Classe GrapheListe)
      */
     @Test
-    public void test2_getIndice_OK() {
+    public void test9_GrapheListegetIndice_OK() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", 12);
@@ -43,9 +157,11 @@ public class GrapheListeTest {
     /**
      * verifie si la liste de tous les nœuds du grap a ete renvoyee correctement
      * Retourne vrai
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test3_listeNoeuds_True() {
+    public void test10_GrapheListelisteNoeuds_True() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", 12);
@@ -65,9 +181,11 @@ public class GrapheListeTest {
     /**
      * verifie si la liste de tous les nœuds du grap a ete renvoyee correctement
      * Retourne faux
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test4_listeNoeuds_False() {
+    public void test11_GrapheListelisteNoeuds_False() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", 12);
@@ -86,9 +204,11 @@ public class GrapheListeTest {
 
     /**
      * verifie que la liste des arcs est renvoyee correctement, a partir du nœud specifie
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test5_suivants_OK() {
+    public void test12_GrapheListeSuivants_OK() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", 12);
@@ -111,9 +231,11 @@ public class GrapheListeTest {
 
     /**
      * verifie si les arcs ont ete ajoutes correctement au graph
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test6_AjouterArc_OK(){
+    public void test13_GrapheListeAjouterArc_OK(){
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
 
@@ -146,9 +268,11 @@ public class GrapheListeTest {
 
     /**
      * verifie que l'ajout d'arcs en double au graph ne cree pas d'enregistrements supplementaires
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test7_AjouterArc_duplicateArcs(){
+    public void test14_GrapheListeAjouterArc_duplicateArcs(){
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
 
@@ -163,9 +287,11 @@ public class GrapheListeTest {
     /**
      * verifie si les arcs ont ete ajoutes correctement au graph
      * avec negative cout
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test8_AjouterArc_negativeCout(){
+    public void test15_GrapheListeAjouterArc_negativeCout(){
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", -12);
@@ -177,9 +303,11 @@ public class GrapheListeTest {
 
     /**
      * verifie que la methode toString retourne la representation correcte
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test9_toString() {
+    public void test16_GrapheListetoString_OK() {
         // preparation des donnees
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A", "B", 12);
@@ -203,9 +331,11 @@ public class GrapheListeTest {
 
     /**
      * Test du constructeur GrapheListe avec un fichier
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test10_constructeur_Fichier() {
+    public void test17_GrapheListeConstructeur_Fichier() {
         try {
             // preparation des donnees
             GrapheListe graphe = new GrapheListe("Graphes/Graphe_exemple1.txt");
@@ -250,9 +380,11 @@ public class GrapheListeTest {
 
     /**
      * Test du constructeur GrapheListe avec un fichier invalide
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test11_constructeur_FichierInvalide() {
+    public void test18_GrapheListeConstructeur_FichierInvalide() {
         // preparation des donnees
         String filename = "Graphes/Graphe_invalid.txt";
 
@@ -262,9 +394,11 @@ public class GrapheListeTest {
 
     /**
      * Test du constructeur GrapheListe avec un fichier vide
+     * (Classe GrapheListe)
+     *
      */
     @Test
-    public void test12_constructeur_FichierVide() {
+    public void test19_GrapheListeConstructeur_FichierVide() {
         try {
             String filename = "Graphes/Graphe_vide.txt";
 
