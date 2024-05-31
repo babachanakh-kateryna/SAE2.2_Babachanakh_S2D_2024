@@ -1,5 +1,9 @@
 package src.algo;
+import src.Arc;
+import src.Graphe;
+import src.Valeur;
 
+import java.util.List;
 public class BellmanFord {
     /*
 
@@ -37,4 +41,49 @@ public class BellmanFord {
         parent(noeud) : String, parent du noeud qui permet d'atteindre ce noeud avec la meilleure valeur
      */
 
+    /**
+     * methode pour resoudre le probleme du plus court chemin a l'aide de l'algorithme de Bellman-Ford
+     *
+     * @param g      le graphe oriente
+     * @param depart le nœud de depart
+     * @return un objet Valeur contenant les distances et les parents de chaque nœud apres convergence de l'algorithme
+     */
+    public Valeur resoudre(Graphe g, String depart) {
+        Valeur valeur = new Valeur();
+        List<String> noeuds = g.listeNoeuds();
+
+        // initialisation des valeurs a +Infini et des parents a null
+        for (String noeud : noeuds) {
+            valeur.setValeur(noeud, Double.MAX_VALUE);
+            valeur.setParent(noeud, null);
+        }
+
+        // on met le nom de depart a la valeur 0
+        valeur.setValeur(depart, 0);
+
+
+        // boucle iterate autant de fois qu'il y a de noeud dans le graphe g-1 (ne compte pas le noeud de depart)
+        for (int i = 1; i < noeuds.size(); i++) {
+
+            // boucle qui prend les noms d'une liste de nœuds un par un
+            for (String noeud : noeuds) {
+                double valeurNoeud = valeur.getValeur(noeud);
+                if (valeurNoeud != Double.MAX_VALUE) {
+                    List<Arc> arcs = g.suivants(noeud);
+
+                    // boucle qui prend les arcs du noeud courant un par un
+                    for (Arc arc : arcs) {
+                        String noeudSuivant = arc.getDest();
+                        double poids = arc.getCout();
+                        if (valeurNoeud + poids < valeur.getValeur(noeudSuivant)) {
+                            valeur.setValeur(noeudSuivant, valeurNoeud + poids);
+                            valeur.setParent(noeudSuivant, noeud);
+                        }
+                    }
+                }
+            }
+        }
+
+        return valeur;
+    }
 }
