@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * La classe GrapheListeTest pour verifier les methodes de GrapheListe
+ * La classe GrapheListeTest pour verifier les methodes de GrapheListe, Arc, Arcs
  */
 public class GrapheTest {
 
