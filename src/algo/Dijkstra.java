@@ -7,6 +7,9 @@ import src.Valeur;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Classe Dijkstra implementant l'algorithme de Dijkstra pour trouver le plus court chemin
+ */
 public class Dijkstra implements Algo {
 
     /*

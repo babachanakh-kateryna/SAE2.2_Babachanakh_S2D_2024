@@ -3,6 +3,9 @@ package src.algo;
 import src.Graphe;
 import src.Valeur;
 
+/**
+ * Interface Algo representant un algorithme de recherche de plus court chemin dans un graphe
+ */
 public interface Algo {
 
     /**

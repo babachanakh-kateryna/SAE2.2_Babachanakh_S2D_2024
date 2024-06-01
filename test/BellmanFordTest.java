@@ -152,7 +152,7 @@ public class BellmanFordTest {
         graphe.ajouterArc("C", "D", -1);
 
 
-        // méthode testee
+        // methode testee
         BellmanFord bellmanFord = new BellmanFord();
         Valeur valeur = bellmanFord.resoudre(graphe, "A");
 

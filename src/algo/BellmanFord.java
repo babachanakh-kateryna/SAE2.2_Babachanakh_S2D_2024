@@ -4,6 +4,10 @@ import src.Graphe;
 import src.Valeur;
 
 import java.util.List;
+
+/**
+ * La classe BellmanFord contient la methode resoudre qui implemente l'algorithme de Bellman-Ford
+ */
 public class BellmanFord implements Algo{
     /*
 
