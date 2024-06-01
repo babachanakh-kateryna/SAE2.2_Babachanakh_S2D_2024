@@ -54,6 +54,8 @@ public class Dijkstra implements Algo {
         Valeur valeur = new Valeur();
         List<String> noeuds = g.listeNoeuds();
         List<String> Q = new ArrayList<>(noeuds);
+        long startTime = System.nanoTime();
+
 
         // Initialisation des valeurs et des parents
         for (String noeud : noeuds) {
@@ -86,6 +88,10 @@ public class Dijkstra implements Algo {
                 }
             }
         }
+
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
+        System.out.println("Duree total de l'execution: " + (int)executionTime);
 
         return valeur;
     }

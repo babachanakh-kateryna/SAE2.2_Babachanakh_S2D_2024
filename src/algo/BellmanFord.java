@@ -56,6 +56,8 @@ public class BellmanFord implements Algo{
     public Valeur resoudre(Graphe g, String depart) {
         Valeur valeur = new Valeur();
         List<String> noeuds = g.listeNoeuds();
+        long startTime = System.nanoTime();
+
 
         // initialisation des valeurs a +Infini et des parents a null
         for (String noeud : noeuds) {
@@ -89,6 +91,9 @@ public class BellmanFord implements Algo{
             }
         }
 
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
+        System.out.println("Duree total de l'execution: " + (int)executionTime);
         return valeur;
     }
 }
