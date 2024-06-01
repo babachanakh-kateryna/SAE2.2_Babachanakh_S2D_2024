@@ -7,7 +7,8 @@ import src.Valeur;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dijkstra {
+public class Dijkstra implements Algo {
+
     /*
 
         Entrees :
@@ -45,6 +46,7 @@ public class Dijkstra {
      * @param depart le nœud de depart
      * @return un objet Valeur contenant les distances et les parents de chaque nœud apres convergence de l'algorithme
      */
+    @Override
     public Valeur resoudre(Graphe g, String depart) {
         Valeur valeur = new Valeur();
         List<String> noeuds = g.listeNoeuds();

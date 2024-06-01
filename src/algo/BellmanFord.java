@@ -4,7 +4,7 @@ import src.Graphe;
 import src.Valeur;
 
 import java.util.List;
-public class BellmanFord {
+public class BellmanFord implements Algo{
     /*
 
         Fonction resoudre(Graphe g InOut, String depart)
@@ -48,6 +48,7 @@ public class BellmanFord {
      * @param depart le nœud de depart
      * @return un objet Valeur contenant les distances et les parents de chaque nœud apres convergence de l'algorithme
      */
+    @Override
     public Valeur resoudre(Graphe g, String depart) {
         Valeur valeur = new Valeur();
         List<String> noeuds = g.listeNoeuds();
