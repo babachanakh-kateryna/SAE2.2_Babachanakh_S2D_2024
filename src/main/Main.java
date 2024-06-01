@@ -6,6 +6,9 @@ import src.algo.BellmanFord;
 
 import java.io.IOException;
 
+/**
+ * programme principal pour utilisation l'algorithme de Bellman-Ford
+ */
 public class Main {
     public static void main(String[] args) {
         try {
